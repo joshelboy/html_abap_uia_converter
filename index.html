@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML -> ABAP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<script>
+    function convert(){
+        var textArea = document.getElementById('input');
+        var lines = textArea.value.split('\n');    // lines is an array of strings
+
+        // Loop through all lines
+        let str = '';
+        let object = document.getElementById('object_name').value
+
+        for (var j = 0; j < lines.length; j++) {
+            convertedText = lines[j]
+            //convertedText = convertedText.replace(/'/g, '"')
+
+            str += "APPEND `" + convertedText + "` to " + object + ".";
+            str += '\n';
+            document.getElementById("converted").innerHTML = str;
+        }
+    };
+</script>
+
+<body>
+
+    <h1 class="text-center">HTML UIA protoyping converter (status C)</h1>
+    <div class="container text-center" style="margin-top: 7%">
+        <div class="row">
+          <div class="col">
+            <textarea id="input" name="input" rows="20" cols="50" placeholder="Input e.g <p>Hello World</p>"></textarea>
+          </div>
+          <div class="col">
+            <button onclick="convert()">Convert to ABAP</button>
+          </div>
+          <div class="col">
+            <textarea readonly id="converted" name="converted" rows="20" cols="50" placeholder="Output"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                (optional): Append to <input type="text" value="rt_html" id="object_name">
+            </div>
+            <div class="col"></div>
+        </div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
